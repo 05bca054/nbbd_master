@@ -1,0 +1,10 @@
+.ui-icon-android:after {
+	background-image: url("../img/android2.svg");
+	/* Make your icon fit */
+	background-size: 18px 18px;
+}
+.ui-icon-menu:after {
+	background-image: url("../img/menu48.svg");
+	/* Make your icon fit */
+	background-size: 36px 36px;
+}

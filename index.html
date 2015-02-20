@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <script charset="utf-8" src="cordova.js"></script>
+		<script charset="utf-8" src="js/compressed/jquery.js"></script>		
+		<script charset="utf-8" src="js/index.js"></script>
+		
+		
+		<script charset="utf-8" type="text/javascript" src="js/config.js"></script>
+		<script charset="utf-8" type='application/javascript' type="text/javascript" src="js/compressed/fastclick.js"></script>		
+		<!--<script charset="utf-8" type='application/javascript' type="text/javascript" src="js/openfb.js"></script>-->		
+		<script charset="utf-8" type="text/javascript" src="js/compressed/jq_validate.js"></script>
+		<script>
+			jQuery(document).bind("mobileinit", function () {
+				console.log("configuring jqm...");
+		 
+				// required for "phoning home" (load external assets, etc.)
+				jQuery.support.cors = true;
+				jQuery.mobile.allowCrossDomainPages = true;
+				
+				jQuery.mobile.page.prototype.options.domCache = true;
+				 
+				jQuery.mobile.phonegapNavigationEnabled = true;
+				jQuery.mobile.defaultDialogTransition = "pop";
+				jQuery.mobile.defaultPageTransition = "slidefade";
+				 
+				jQuery.mobile.loader.prototype.options.text = "loading";
+				jQuery.mobile.loader.prototype.options.textVisible = true;
+				jQuery.mobile.loader.prototype.options.theme = "a";
+				
+			});
+			
+			/*$(document).on({
+				ajaxSend: function () { $.mobile.loading('show'); },
+				ajaxStart: function () { $.mobile.loading('hide'); },
+				ajaxStop: function () { $.mobile.loading('show'); },
+				ajaxError: function () { $.mobile.loading('hide'); }
+			});*/
+			app.init();
+			
+		</script>
+		
+		<script charset="utf-8" src="js/JQM.js"></script>
+		<script charset="utf-8" src="js/compressed/jqm-datebox-core.js"></script>
+		<script charset="utf-8" src="js/compressed/flipbox.js"></script>
+		<!-- critical -->
+		<!-- plugins -->
+		<!-- plugins-->
+		<!-- themes -->
+		<!-- jQuery Mobile, FontAwesome & App -->
+		<link rel="stylesheet" href="css/jquery.mobile-1.4.5.css" />
+		<link rel="stylesheet" href="css/flipbox.css" />
+		<link rel="stylesheet" href="css/font-awesome.css" />
+		<link rel="stylesheet" href="css/custom-icon.css" />
+		<style>
+			
+			label.error {
+				color: red;
+				font-size: 16px;
+				font-weight: normal;
+				line-height: 1.4;
+				margin-top: 0.5em;
+				width: 100%;
+				float: none;
+			}
+			@media screen and (orientation: portrait) {
+				label.error {
+					margin-left: 0;
+					display: block;
+				}
+			}
+			@media screen and (orientation: landscape) {
+				label.error {
+					display: inline-block;
+					margin-left: 22%;
+				}
+			}
+			em {
+				color: red;
+				font-weight: bold;
+				padding-right: .25em;
+			}
+		</style>
+    </head>
+    <body>
+		<div data-role="page" id="login_page">
+			<div data-role="header" data-theme="a">
+				<h1>Near by best deals</h1>
+			</div><!-- /header -->
+			<div role="main" class="ui-content">
+				<h3>Sign In</h3>
+				<form id="login-form">
+					<label for="txt-email">Email Address</label>
+					<input type="text" name="txtemail" id="txtemail" value="">
+					<label for="txt-password">Password</label>
+					<input type="password" name="txtpassword" id="txtpassword" value="">
+					<fieldset data-role="controlgroup">
+						<input type="checkbox" name="chck-rememberme" id="chck-rememberme" checked="">
+						<label for="chck-rememberme">Remember me</label>
+					</fieldset>
+					<input value="Login" type="submit" data-inline="true" id="register">
+				</form>
+				
+				<div data-role="popup" id="dlg-invalid-credentials" data-dismissible="false" style="max-width:400px;">
+					<div role="main" class="ui-content">
+						<h3 class="mc-text-danger">Login Failed</h3>
+						<p>Did you enter the right credentials?</p>
+						<div class="mc-text-center"><a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-b mc-top-margin-1-5">OK</a></div>
+					</div>
+				</div>
+			</div><!-- /content -->
+		</div><!-- /page -->
+		
+		<div data-role="page" id="coupon_page">
+			<div data-role="header" data-theme="a">
+				<h1>Nearby best deals</h1>
+				<div data-role="navbar">
+					<ul>
+						<li><a href="#" class="ui-btn-active">Total Users : <span id="total_users" class="ui-li-count ui-btn-corner-all countBubl">1112</span></a></li>						
+					</ul>
+				</div><!-- /navbar -->
+			</div><!-- /header -->
+			<div role="main" class="ui-content">
+				<h3>Send coupon</h3>
+				<form id="coupon-form">
+					<div data-role="fieldcontain">
+						<label for="title">Coupon title</label>
+						<input type="text" name="title" id="title" value="">
+					</div>
+					<div data-role="fieldcontain">
+						<label for="coupon_code">Coupon Code</label>
+						<input type="text" name="coupon_code" id="coupon_code" value="">
+					</div>
+					<div data-role="fieldcontain">
+						<label for="description">Coupon Detail</label>
+						<textarea name="description" id="description" value=""></textarea>
+					</div>
+					
+					<div data-role="fieldcontain">
+						<label for="exp_date">Expire date</label>
+						<input name="exp_date" id="exp_date" type="text" data-role="datebox" data-options='{"mode":"flipbox", "maxDays":7, "overrideDateFormat":"%d - %b - %Y", "afterToday":true, "notToday":true, "overrideDateFieldOrder": ["d","m","y"]}' readonly="readonly" class="">
+					</div>
+					
+					<div data-role="fieldcontain">
+						<label for="exp_time">Expire Time</label>
+						<input name="exp_time" id="exp_time" type="text" data-role="datebox" data-options='{"mode":"timeflipbox"}' readonly="readonly" class="">
+					</div>					
+				
+					<div data-role="fieldcontain">
+						<fieldset data-role="controlgroup" data-theme="a">
+							<legend>Is coupon sharable on social sites like facebook,twitter and whatapp?</legend>
+							<input type="radio" name="social-share" id="social-share-yes" value="on"><label for="social-share-yes">Yes</label><input type="radio" name="social-share" id="social-share-no" value="off" checked="checked"><label for="social-share-no">No</label>
+					    </fieldset>
+					</div>
+					
+					<div data-role="fieldcontain">
+						<input value="Send coupon" type="submit" data-inline="true" id="send_coupon">
+						<a href="#" data-inline="true" class="ui-btn ui-corner-all ui-shadow ui-btn-b mc-top-margin-1-5">Coupon Left:
+							<span id="coupon_left" class="ui-li-count ui-btn-corner-all countBubl">9</span>
+						</a>
+					</div>					
+				</form>
+				
+			</div><!-- /content -->
+			<div data-role="footer"  data-position="fixed" style="overflow:hidden;">				
+				<div data-role="navbar">
+					<ul>
+						<li>
+							<a href="#login_page" class="ui-btn ui-icon-power ui-btn-icon-left ui-shadow ui-corner-all">Logout</a>
+						</li>
+						<li>
+							<a href="#no_coupon" class="ui-btn ui-icon-info ui-btn-icon-left ui-shadow ui-corner-all">Contact Us</a>
+						</li>
+					</ul>
+				</div><!-- /navbar -->
+			</div><!-- /footer -->
+		</div><!-- /page -->
+		
+		<div data-role="page" id="no_coupon">
+			<div data-role="header" data-theme="c">
+				<h1>contact Us</h1>
+			</div><!-- /header -->
+			<div role="main" class="ui-content">
+								
+				<h2>Near by best deals</h2>
+				<p><a onclick="event.preventDefault();window.open('http://www.nearbybestdeals.com', '_system');" class="ui-btn ui-icon-arrow-r ui-btn-icon-left ui-btn-active ui-state-persist">Website : www.nearbybestdeals.com</a></p>
+				<p><a href="tel:+919662547757" class="ui-btn ui-icon-phone ui-btn-icon-left ui-btn-active ui-state-persist">Mobile No. : +91 9662547757</a></p>
+				<p><a href="mailto:renew@nearbybestdeals.com" class="ui-btn ui-icon-mail ui-btn-icon-left ui-btn-active ui-state-persist">Email : renew@nearbybestdeals.com</a></p>
+				<p>Contact us if no coupon left or any other enquiry</p>
+				
+			</div><!-- /content -->
+			
+			<div data-role="footer"  data-position="fixed" style="overflow:hidden;">				
+				<div data-role="navbar">
+					<ul>
+						<li>
+							<a href="#login_page" class="ui-btn ui-icon-power ui-btn-icon-left ui-shadow ui-corner-all">Logout</a>
+							
+							<!--<a href="#" data-icon="power">Log out</a>-->
+						</li>
+						<li>
+							<a href="#coupon_page" class="ui-btn ui-icon-action ui-btn-icon-left ui-shadow ui-corner-all">Send coupon</a>
+						</li>
+					</ul>
+				</div><!-- /navbar -->
+			</div><!-- /footer -->
+			
+		</div><!-- /page -->
+		
+    </body>
+</html>
